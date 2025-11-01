@@ -1,12 +1,14 @@
 import Image from "next/image";
-import SmoothScroll from "./components/smoothscroll";
+import Clients from "./components/clients";
+import Header from "./components/header";
 
 export default function Home() {
   return (
     <>
-      <SmoothScroll>
-
-      </SmoothScroll>
+      <main className="relative ">
+        <Header />
+        <Clients></Clients>
+      </main>
     </>
   );
 }
