@@ -5,10 +5,8 @@ import Header from "./components/header";
 export default function Home() {
   return (
     <>
-      <main className="relative ">
-        <Header />
-        <Clients></Clients>
-      </main>
+      <Header />
+      <Clients></Clients>
     </>
   );
 }
