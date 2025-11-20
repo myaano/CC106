@@ -22,7 +22,7 @@ const urbanist = Urbanist({
 export default function Header() {
   return (
     <header
-      className={`${urbanist.variable} fixed top-0 left-0 w-full bg-transparent h-[3rem] md:h-[5rem] text-3xl pt-7 flex px-4 md:px-7 lg:px-25 mix-blend-difference text-white md:text-3xl antialiased font-[32]`}
+      className={`${urbanist.variable} fixed top-0 left-0 w-full bg-transparent h-[3rem] md:h-[5rem] text-3xl pt-7 flex px-4 md:px-7 lg:px-25 mix-blend-difference text-white md:text-xl md:p-0 antialiased font-[32]  select-none`}
     >
       <div className="flex justify-end font-urbanist w-full ">
         {/* <div className="flex justify-center items-center">
