@@ -2,8 +2,8 @@
 
 // image imports
 import awd from "../../../public/awdawdawd.jpg";
-import wd from "../../../public/wd.jpg"
-import wdw from "../../../public/wdw.jpg"
+import wd from "../../../public/wd.jpg";
+import wdw from "../../../public/wdw.jpg";
 // image imports
 
 // component imports
@@ -107,25 +107,41 @@ export default function Clients() {
       ref={lenisRef}
     >
       <div className={`${poppins.variable} ${urbanist.variable}`}>
-        <div className="hidden lg:block">
+        {/* <div className="h-screen bg-white flex  justify-center items-center">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            whileInView={{ opacity: 1 }}
+            className=" absolute h-50 w-50 rounded-lg bg-green-500 flex justify-center items-center"
+          >
+            <Image
+              src={awd}
+              alt="sorimg1"
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+              priority={true}
+            />
+          </motion.div>
+        </div> */}
+        <div className="hidden lg:block  select-none">
           <div className="h-screen bg-white flex px-[4rem]  text-[#3C3535] relative -z-10">
-            <div className="w-[50vw]  flex flex-col">
-              <div className=" text-[100px] font-poppins  flex-1 flex justify-center items-center">
-                <p className="inline-block align-middle leading-none ">
+            <div className="w-[45vw]  flex flex-col">
+              <div className=" text-[78px] font-poppins  flex-1 flex justify-center items-center">
+                <p className="inline-block align-middle leading-none">
                   Protecting <br /> Coastal <br /> Sorsogon
                 </p>
               </div>
               <div className=" flex flex-col items-end h-[30vh]">
                 <div className="flex flex-col gap-4 font-urbanist font-medium text-lg">
                   <div className="  flex gap-3 leading-5">
-                    <div className="w-[5px] bg-[#0F1E59]"></div>
+                    <div className="w-[4px] bg-[#0F1E59]"></div>
                     <p>
                       Ensuring Cleanliness, and Safety <br />
                       across the Province of Sorsogon
                     </p>
                   </div>
                   <div className="flex gap-3 leading-5">
-                    <div className="w-[5px] bg-[#0F1E59]"></div>
+                    <div className="w-[4px] bg-[#0F1E59]"></div>
                     <p>
                       While protecting coastal Livelihood, <br />
                       and Tourism around Sorsogon
@@ -136,17 +152,12 @@ export default function Clients() {
             </div>
             <div className="h-screen  flex-1 relative -z-10">
               <div className="flex h-full relative ">
-                <div className="bg-[#0F1E59] h-[50vh] w-[8px]"></div>
-                <div className=" w-[24rem]"></div>
-                <div className="bg-[#0F1E59] h-[75vh] w-[8px]"></div>
+                <div className="bg-[#0F1E59] h-[50vh] w-[6px]"></div>
+                <div className=" w-[18rem]"></div>
+                <div className="bg-[#0F1E59] h-[75vh] w-[6px]"></div>
                 <div className=" h-full  flex absolute">
-                  <div className=" px-4 flex flex-col justify-start items-end gap-4 p-10">
-                    <motion.div
-                      intial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      whileInView={{ opacity: 1 }}
-                      className=" h-[15rem] w-[20rem]"
-                    >
+                  <div className=" pr-2 pl-4 flex flex-col justify-start items-end gap-4 py-10">
+                    <div className=" h-auto w-[14rem]">
                       <Image
                         src={awd}
                         alt="sorimg1"
@@ -154,8 +165,8 @@ export default function Clients() {
                         style={{ objectFit: "cover" }}
                         priority={true}
                       />
-                    </motion.div>
-                    <div className=" h-auto w-[13rem]">
+                    </div>
+                    <div className=" h-auto w-[9rem]">
                       <Image
                         src={wd}
                         alt="sorimg2"
@@ -166,7 +177,7 @@ export default function Clients() {
                     </div>
                   </div>
                   <div className=" flex justify-center items-center">
-                    <div className=" h-auto w-[12rem]">
+                    <div className=" h-auto w-[9rem]">
                       <Image
                         src={wdw}
                         alt="sorimg3"
@@ -212,7 +223,7 @@ export default function Clients() {
             id="horizontal"
             className="h-screen bg-[#0F1E59] w-auto relative -z-10 flex font-semibold overflow-hidden"
           >
-            <div className="content bg-[#0F1E59] h-screen w-[250vw] shrink-0 flex justify-center items-center border-none">
+            <div className="content bg-[#0F1E59] h-screen w-[250vw] shrink-0 flex justify-center items-center border-none  select-none">
               <p className="about text-white text-[200px]">
                 About what YOU can do.
               </p>
@@ -236,8 +247,6 @@ export default function Clients() {
         </div>
         {/* horizontal scroll pc END */}
 
-
-        
         {/* for mobile about section */}
         <div className=" block lg:hidden xl:hidden">
           <section className="relative -z-10 bg-[#0F1E59] h-screen text-white flex justify-start items-center px-25">
@@ -267,7 +276,7 @@ export default function Clients() {
         </div>
 
         <div className="h-screen bg-[#000000] relative">
-          <div className="bg-amber-500 w-[20rem] h-[20rem] absolute"></div>
+          <div className=" w-[20rem] h-[20rem] absolute"></div>
           <div className="bg-red-500 w-[20rem] h-[20rem] absolute right"></div>
         </div>
         <div className="h-screen bg-[#ffffff] flex justify-center items-center"></div>
