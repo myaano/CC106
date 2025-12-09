@@ -2,25 +2,37 @@
 
 // image imports
 import awd from "../../../public/awdawdawd.jpg";
+import wd from "../../../public/wd.jpg";
+import wdw from "../../../public/wdw.jpg";
 // image imports
 
 // component imports
 import { ReactLenis } from "lenis/react";
-import * as motion from "motion/react-client";
+//motion improts
+import {
+  motion,
+  MotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
+//motion improts
 
-//gsap imports {
+//imports {
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-
-//gsap imports }
+// imports
 // component imports
 
 // react imports
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 // react imports
+
+//next imports
+import Image from "next/image";
+//next imports
 
 //font imports
 import { Urbanist } from "next/font/google";
@@ -33,17 +45,10 @@ const urbanist = Urbanist({
 import { Poppins } from "next/font/google";
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["300", "500"],
   variable: "--font-poppins",
 });
 //font imports
-
-const box = {
-  width: 100,
-  height: 100,
-  backgroundColor: "#ff0088",
-  borderRadius: 5,
-};
 
 export default function Clients() {
   const lenisRef = useRef(null);
@@ -93,7 +98,7 @@ export default function Clients() {
     });
   }, []);
 
-// if innerwidth is < 1024 do not do the effect here
+  // if innerwidth is < 1024 do not do the effect here
   return (
     <ReactLenis
       root
@@ -102,32 +107,123 @@ export default function Clients() {
       ref={lenisRef}
     >
       <div className={`${poppins.variable} ${urbanist.variable}`}>
-        <div className="relative -z-10 h-screen bg-black  flex justify-center items-center">
-          <Image
-            src={awd}
-            alt="whatever is this"
-            sizes="100vw"
-            fill
-            style={{ objectFit: "cover" }}
-            className="absolute"
-          />
-
+        {/* <div className="h-screen bg-white flex  justify-center items-center">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             whileInView={{ opacity: 1 }}
-            className="square absolute h-50 w-50 rounded-lg bg-green-500 flex justify-center items-center"
+            className=" absolute h-50 w-50 rounded-lg bg-green-500 flex justify-center items-center"
           >
-            <p>awdhadwadadw</p>
+            <Image
+              src={awd}
+              alt="sorimg1"
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+              priority={true}
+            />
           </motion.div>
+        </div> */}
+        <div className="hidden lg:block  select-none">
+          <div className="h-screen bg-white flex px-[4rem]  text-[#3C3535] relative -z-10">
+            <div className="w-[45vw]  flex flex-col">
+              <div className=" text-[78px] font-poppins  flex-1 flex justify-center items-center">
+                <p className="inline-block align-middle leading-none">
+                  Protecting <br /> Coastal <br /> Sorsogon
+                </p>
+              </div>
+              <div className=" flex flex-col items-end h-[30vh]">
+                <div className="flex flex-col gap-4 font-urbanist font-medium text-lg">
+                  <div className="  flex gap-3 leading-5">
+                    <div className="w-[4px] bg-[#0F1E59]"></div>
+                    <p>
+                      Ensuring Cleanliness, and Safety <br />
+                      across the Province of Sorsogon
+                    </p>
+                  </div>
+                  <div className="flex gap-3 leading-5">
+                    <div className="w-[4px] bg-[#0F1E59]"></div>
+                    <p>
+                      While protecting coastal Livelihood, <br />
+                      and Tourism around Sorsogon
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="h-screen  flex-1 relative -z-10">
+              <div className="flex h-full relative ">
+                <div className="bg-[#0F1E59] h-[50vh] w-[6px]"></div>
+                <div className=" w-[18rem]"></div>
+                <div className="bg-[#0F1E59] h-[75vh] w-[6px]"></div>
+                <div className=" h-full  flex absolute">
+                  <div className=" pr-2 pl-4 flex flex-col justify-start items-end gap-4 py-10">
+                    <div className=" h-auto w-[14rem]">
+                      <Image
+                        src={awd}
+                        alt="sorimg1"
+                        sizes="100vw"
+                        style={{ objectFit: "cover" }}
+                        priority={true}
+                      />
+                    </div>
+                    <div className=" h-auto w-[9rem]">
+                      <Image
+                        src={wd}
+                        alt="sorimg2"
+                        sizes="100vw"
+                        style={{ objectFit: "cover" }}
+                        priority={true}
+                      />
+                    </div>
+                  </div>
+                  <div className=" flex justify-center items-center">
+                    <div className=" h-auto w-[9rem]">
+                      <Image
+                        src={wdw}
+                        alt="sorimg3"
+                        sizes="100vw"
+                        style={{ objectFit: "cover" }}
+                        priority={true}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
+        {/* mobile landing page here */}
+        <div className="block lg:hidden">
+          <div className="h-screen bg-white px-4 pt-40 pb-20 font-poppins  flex flex-col text-[#3C3535]  justify-center items-center">
+            <div className=" text-[100px] w-full">
+              <p className="leading-none">Protec-</p>
+              <p className="flex justify-end items-end leading-none ">ting</p>
+              <p>Coastal</p>
+              <p className="flex justify-start items-start leading-none">
+                Sor-
+              </p>
+              <p className="flex justify-end items-end leading-none">sogon</p>
+            </div>
+            <div className=" flex justify-start items-center w-full h-full font-medium text-xl">
+              <div className="flex gap-2">
+                <div className="w-[5px] bg-[#0F1E59]"></div>
+                <p className="leading-6">
+                  Protecting Sorsogon's <br /> Coast and our livelihood
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* mobile landing page here  END*/}
+
+        {/* horizontal scroll pc */}
         <div className="hidden lg:block">
           <section
             id="horizontal"
             className="h-screen bg-[#0F1E59] w-auto relative -z-10 flex font-semibold overflow-hidden"
           >
-            <div className="content bg-[#0F1E59] h-screen w-[250vw] shrink-0 flex justify-center items-center border-none">
+            <div className="content bg-[#0F1E59] h-screen w-[250vw] shrink-0 flex justify-center items-center border-none  select-none">
               <p className="about text-white text-[200px]">
                 About what YOU can do.
               </p>
@@ -149,10 +245,11 @@ export default function Clients() {
             </div>
           </section>
         </div>
+        {/* horizontal scroll pc END */}
 
         {/* for mobile about section */}
         <div className=" block lg:hidden xl:hidden">
-          <section className="relative -z-10 bg-[#0F1E59] h-screen text-white flex justify-center items-center ">
+          <section className="relative -z-10 bg-[#0F1E59] h-screen text-white flex justify-start items-center px-25">
             <div className="text-8xl font-poppins font-semibold gap-6 flex flex-col">
               <p>About</p>
               <p>what</p> <p>YOU</p> <p>can</p> <p>do.</p>
@@ -160,24 +257,31 @@ export default function Clients() {
           </section>
         </div>
 
-        <div className="h-[150vh] bg-white relative -z-10 flex justify-between items-center">
-          <div className="h-[120vh] bg-[#0F1E59] w-[45vw]  flex justify-center items-center p-10">
-            <p className="font-urbanist text-white text-5xl font-semibold">
-              Protecting your local coastline by submitting a report to us to
-              provide cleanup services from the LGU of your municipality
-            </p>
-          </div>
-          <div className="h-full  flex-1 font-poppins text-[200px] font-bold flex flex-col justify-start py-22">
-            <p className="h-auto w-auto leading-none">HELP</p>
-            <p className="h-auto w-auto leading-none">US</p>
-            <p className="h-auto w-auto leading-none">BY</p>
+        {/* about part 2  */}
+        <div className="hidden lg:block">
+          <div className="h-[150vh] bg-white relative -z-10 flex justify-between items-center ">
+            <div className="h-[120vh] bg-[#0F1E59] w-[45vw]  flex justify-center items-center p-10">
+              <p className="font-poppins font-normal text-white text-5xl">
+                Protecting your local coastline by submitting a report to us
+                providing you with cleanup services from the LGU of your
+                municipality
+              </p>
+            </div>
+            <div className="h-[110vh] flex-1 font-poppins text-[190px] font-bold flex flex-col justify-center overflow-hidden">
+              <p className="h-auto w-auto leading-none  ">HELP</p>
+              <p className="h-auto w-auto leading-none ">US</p>
+              <p className="h-auto w-auto leading-none ">BY</p>
+            </div>
           </div>
         </div>
 
-        <div className="h-screen bg-[#000000] "></div>
+        <div className="h-screen bg-[#000000] relative">
+          <div className=" w-[20rem] h-[20rem] absolute"></div>
+          <div className="bg-red-500 w-[20rem] h-[20rem] absolute right"></div>
+        </div>
         <div className="h-screen bg-[#ffffff] flex justify-center items-center"></div>
-        <div className="h-screen bg-[#000000]  flex justify-center items-center text-white">
-          <svg
+        <div className="h-screen bg-[#000000]  flex justify-center items-center text-white ">
+          {/* <svg
             width="1306"
             height="554"
             viewBox="0 0 1306 554"
@@ -190,7 +294,7 @@ export default function Clients() {
               strokeWidth="3"
               strokeLinecap="round"
             />
-          </svg>
+          </svg> */}
         </div>
       </div>
     </ReactLenis>
