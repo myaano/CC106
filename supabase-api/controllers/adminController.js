@@ -8,7 +8,7 @@ exports.getAllAdmins = async (req, res) => {
   res.json(data);
 };
 
-// CREATE new admin
+
 exports.createAdmin = async (req, res) => {
   const { username, password_hash } = req.body;
   const { data, error } = await supabase.from('admin').insert([{ username, password_hash }]);

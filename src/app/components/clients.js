@@ -1,5 +1,7 @@
 "use client";
 
+import HomeReport from "./homereport";
+
 // image imports
 import awd from "../../../public/awdawdawd.jpg";
 import wd from "../../../public/wd.jpg";
@@ -11,13 +13,7 @@ import { ReactLenis } from "lenis/react";
 import ReportModal from "./reportmodal";
 
 //motion improts
-import {
-  motion,
-  MotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "motion/react";
+import { motion } from "motion/react";
 //motion improts
 
 //imports {
@@ -25,7 +21,6 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 // imports
 // component imports
@@ -72,6 +67,29 @@ export default function Clients() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
+    const landdesc1 = new SplitText(".landdesc1", { type: "lines" });
+    const landdesc1Txt = landdesc1.lines;
+
+    gsap.from(landdesc1Txt, {
+      yPercent: -200,
+      stagger: 0.2,
+      ease: "bounce.out",
+      duration: 0.5,
+      onComplete: () => { landdesc1.revert(); }
+    });
+
+    const landdesc2 = new SplitText(".landdesc2", { type: "lines" });
+    const landdesc2Txt = landdesc2.lines;
+
+    gsap.from(landdesc2Txt, {
+      yPercent: -200,
+      stagger: 0.2,
+      ease: "bounce.out",
+      duration: 1,
+      onComplete: () => { landdesc2.revert(); }
+    });
+
+    // horizontal gsap
     gsap.to(".content", {
       x: "-150vw",
       scrollTrigger: {
@@ -98,6 +116,7 @@ export default function Clients() {
       },
     });
 
+    // about2 gsap
     const report = new SplitText(".report", { type: "chars" });
     const reportTxt = report.chars.reverse();
 
@@ -109,6 +128,7 @@ export default function Clients() {
         trigger: ".about",
         start: "bottom top",
       },
+      onComplete: () => { report.revert(); }
     });
 
     gsap.from(".a", {
@@ -139,6 +159,9 @@ export default function Clients() {
         trigger: ".about2",
         start: "top center",
       },
+      onComplete: () => { submitrep.revert(); 
+        
+      }
     });
 
     const submitrep2 = new SplitText(".submitrep2", { type: "words" });
@@ -153,6 +176,7 @@ export default function Clients() {
         trigger: ".about2",
         start: "top center",
       },
+      onComplete: () => { submitrep2.revert(); }
     });
 
     const ddesc = new SplitText(".ddesc", { type: "words" });
@@ -167,18 +191,34 @@ export default function Clients() {
         trigger: ".about2",
         start: "top center",
       },
+      onComplete: () => { ddesc.revert(); }
     });
 
-
     gsap.from(".bttn", {
-      x: "250",
+      x: "350",
       scrollTrigger: {
         trigger: ".about2",
-        start: "top center"
-      }
-    })
-  });
+        start: "top center",
+      },
+    });
 
+    const quote = new SplitText(".quote", { type: "chars" });
+    const quoteTxt = quote.chars;
+
+    gsap.from(quoteTxt, {
+      xPercent: 200,
+      ease: "power1.inOut",
+      stagger: 0.05,
+      duration: 0.1,
+      scrollTrigger: {
+        trigger: ".about2",
+        start: "top center",
+      },
+      onComplete: () => { quote.revert(); }
+    });
+
+  });
+  
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -189,42 +229,29 @@ export default function Clients() {
       ref={lenisRef}
     >
       <div className={`${poppins.variable} ${urbanist.variable} antialiased`}>
-        {/* <div className="h-screen bg-white flex  justify-center items-center">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            whileInView={{ opacity: 1 }}
-            className=" absolute h-50 w-50 rounded-lg bg-green-500 flex justify-center items-center"
-          >
-            <Image
-              src={awd}
-              alt="sorimg1"
-              sizes="100vw"
-              style={{ objectFit: "cover" }}
-              priority={true}
-            />
-          </motion.div>
-        </div> */}
-        <div className="hidden lg:block select-none">
+        {/* landing page herer */}
+        <div className="hidden md:block select-none">
           <div className="h-screen bg-white flex px-[4rem]  text-[#3C3535]">
             <div className="w-[45vw]  flex flex-col">
-              <div className=" text-[100px] font-poppins  flex-1 flex justify-center items-center">
-                <p className="inline-block align-middle leading-none">
-                  Protecting <br /> Coastal <br /> Sorsogon
-                </p>
+              <div className=" text-5xl lg:text-[100px] font-poppins flex-1 flex flex-col justify-center items-center ">
+                <div>
+                  <p className="landtitle ">Protecting</p>
+                  <p className="landtitle2">Coastal</p>
+                  <p className="landtitle3">Sorsogon</p>
+                </div>
               </div>
               <div className=" flex flex-col items-end h-[30vh]">
                 <div className="flex flex-col gap-4 font-urbanist font-medium text-lg">
                   <div className="  flex gap-3 leading-5">
                     <div className="w-[4px] bg-[#0F1E59]"></div>
-                    <p>
+                    <p className="landdesc1">
                       Ensuring Cleanliness, and Safety <br />
                       across the Province of Sorsogon
                     </p>
                   </div>
                   <div className="flex gap-3 leading-5">
                     <div className="w-[4px] bg-[#0F1E59]"></div>
-                    <p>
+                    <p className="landdesc2">
                       While protecting coastal Livelihood, <br />
                       and Tourism around Sorsogon
                     </p>
@@ -239,7 +266,19 @@ export default function Clients() {
                 <div className="bg-[#0F1E59] h-[75vh] w-[6px]"></div>
                 <div className=" h-full  flex absolute">
                   <div className=" pr-2 pl-4 flex flex-col justify-start items-end gap-4 py-10">
-                    <div className=" h-auto w-[20rem]">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.4,
+                        scale: {
+                          type: "spring",
+                          visualDuration: 0.4,
+                          bounce: 0.5,
+                        },
+                      }}
+                      className=" h-auto w-[20rem]"
+                    >
                       <Image
                         src={awd}
                         alt="sorimg1"
@@ -247,8 +286,20 @@ export default function Clients() {
                         style={{ objectFit: "cover" }}
                         priority={true}
                       />
-                    </div>
-                    <div className=" h-auto w-[13rem]">
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.4,
+                        scale: {
+                          type: "spring",
+                          visualDuration: 0.4,
+                          bounce: 0.5,
+                        },
+                      }}
+                      className=" h-auto w-[13rem]"
+                    >
                       <Image
                         src={wd}
                         alt="sorimg2"
@@ -256,10 +307,22 @@ export default function Clients() {
                         style={{ objectFit: "cover" }}
                         priority={true}
                       />
-                    </div>
+                    </motion.div>
                   </div>
                   <div className=" flex justify-center items-center">
-                    <div className=" h-auto w-[12rem]">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.4,
+                        scale: {
+                          type: "spring",
+                          visualDuration: 0.4,
+                          bounce: 0.5,
+                        },
+                      }}
+                      className=" h-auto w-[12rem]"
+                    >
                       <Image
                         src={wdw}
                         alt="sorimg3"
@@ -267,7 +330,7 @@ export default function Clients() {
                         style={{ objectFit: "cover" }}
                         priority={true}
                       />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -276,9 +339,9 @@ export default function Clients() {
         </div>
 
         {/* mobile landing page here */}
-        <section className="block lg:hidden">
-          <div className="h-[100vh]  px-4 pt-40 pb-20 font-poppins  flex flex-col text-[#3C3535]  justify-center items-center">
-            <div className=" text-[100px] md:text-[150px] h-full w-full">
+        <section className="block md:hidden">
+          <div className="h-[100vh]  px-4 py-20 font-poppins  flex flex-col text-[#3C3535]  justify-center items-center">
+            <div className="text-[70px]  sm:text-[90px] h-full w-full bg-amber-500 ">
               <p className="leading-none">Protec-</p>
               <p className="flex justify-end items-end leading-none ">ting</p>
               <p className="text-[#D3001C]">Coastal</p>
@@ -341,20 +404,20 @@ export default function Clients() {
               </div>
             </div>
             <div className="flex justify-between">
-              <div className="font-poppins text-[100px] bg-amber-500 leading-none text-[#3C3535]  relative -z-10">
+              <div className="font-poppins text-[100px] leading-none text-[#3C3535]  relative -z-10">
                 <p className="report overflow-hidden">Report</p>
                 <p className="a">a</p>
                 <p className="problem text-[#D3001C] ">Problem</p>
               </div>
               <div className="flex">
                 <div className="flex justify-end items-end">
-                  <p className=" font-urbanist text-[34px] overflow-hidden bg-blue-600  h-auto min-w-90 w-90 text-[#3C3535] ddesc ">
+                  <p className=" font-urbanist text-[34px] overflow-hidden   h-auto min-w-90 w-90 text-[#3C3535] ddesc ">
                     Submit a report to us and we will provide cleanup and
                     restoration services from your LGU
                   </p>
                 </div>
-                <div className="flex justify-end items-end bg-red-500 w-40">
-                  <p className="text-[10px] [writing-mode:vertical-lr] font-urbanist">
+                <div className="flex justify-end items-end  w-40">
+                  <p className="quote text-[10px] [writing-mode:vertical-lr] font-urbanist overflow-hidden">
                     “the sea can both produce and destroy life”
                   </p>
                 </div>
@@ -401,24 +464,24 @@ export default function Clients() {
 
         {/* for mobile to tablet about section 2 */}
         <section className="block lg:hidden">
-          <div className="h-screen p-[20px] flex flex-col font-poppins">
+          <div className="h-screen p-[20px] flex flex-col font-poppins ">
             <div className=" flex-1">
-              <div className=" text-[10px] md:text-[14px] h-10 grid grid-cols-2">
+              <div className=" text-[10px] md:text-[14px]  h-15 grid grid-cols-2">
                 <p>Improper Waste Management</p>
                 <p>Coral Reef Destruction</p>
               </div>
-              <div className="flex justify-end items-center h-auto">
+              <div className="flex  justify-between items-center h-auto">
+                <div className="leading-none text-[64px] md:text-[100px] text-[#3C3535] [text-trim-none] ">
+                  <p>Report</p>
+                  <p>your</p>
+                  <p className="text-[#D3001C]">Problem</p>
+                </div>
                 <p className="text-[10px] md:text-[14px] [writing-mode:vertical-lr]">
                   "the sea can both produce and destroy life"
                 </p>
               </div>
-              <div className="leading-none mobtitle text-[64px] md:text-[100px] text-[#3C3535] [text-trim-none] ">
-                <p>Report</p>
-                <p>your</p>
-                <p className="text-[#D3001C]">Problem</p>
-              </div>
             </div>
-            <div className=" flex-1 flex flex-col ">
+            <div className=" flex-1 flex flex-col">
               <article className="flex justify-center items-center flex-1">
                 <p className="font-[300] text-balance text-[20px] md:text-[30px]">
                   Submit a report to us and we will provide cleanup and
@@ -454,26 +517,14 @@ export default function Clients() {
           </div>
         </section>
 
-        <div className="h-screen bg-[#000000]">
-          <div className=" w-[20rem] h-[20rem] absolute"></div>
-          <div className="bg-red-500 w-[20rem] h-[20rem] absolute right"></div>
-        </div>
-        <div className="h-screen bg-[#ffffff] flex justify-center items-center"></div>
-        <div className="h-screen bg-[#000000]  flex justify-center items-center text-white ">
-          {/* <svg
-            width="1306"
-            height="554"
-            viewBox="0 0 1306 554"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1.5 160.545C145.582 160.545 157.311 1.5 256.611 1.5C362.422 1.5 348.914 262.963 461.478 262.963C574.042 262.963 614.565 1.5 709.119 1.5C803.672 1.5 846.447 262.963 938.749 262.963C1031.05 262.963 1037.28 1.5 1184.08 1.5C1330.88 1.5 1302 570.238 1302 551.5"
-              stroke="white"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-          </svg> */}
+        <div className="h-[110vh]  lg:flex px-[50px] py-30  ">
+          <div className="font-poppins text-[50px] lg:w-[50vw] lg:h-ful flex flex-col w-full pb-10 justify-start items-start lg:text-[100px] leading-none">
+            <p className="text-[#3C3535]">Current</p>
+            <p className="text-[#D3001C]">Problems :</p>
+          </div>
+          <div className="w-full h-[50vh] lg:w-[50vw] lg:h-full ">
+            <HomeReport />
+          </div>
         </div>
       </div>
     </ReactLenis>
