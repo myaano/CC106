@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <header
-      className={`${urbanist.variable} text-[#3C3535] md:text-xl antialiased font-[32]  fixed top-0 left-0 w-full bg-transparent h-[3rem] md:h-[5rem] text-3xl pt-7 flex px-4 md:px-7 lg:px-25`}
+      className={`${urbanist.variable} text-[#3C3535] md:text-xl antialiased font-[32]  fixed top-0 left-0 w-full bg-transparent h-[3rem] md:h-[5rem] text-3xl pt-7 flex px-4 md:px-7 lg:px-25 z-40`}
     >
       <div className="flex justify-end w-full ">
         <button

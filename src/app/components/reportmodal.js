@@ -105,7 +105,7 @@ export default function ReportModal({ isOpen, onClose }) {
 
     try {
       // Example POST request
-      const res = await fetch("/api/report", {
+      const res = await fetch("", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ municipality, barangay, problem }),
@@ -131,11 +131,13 @@ export default function ReportModal({ isOpen, onClose }) {
         Report a Problem ?
       </p>
 
-      {error && <p className="text-red-500 mb-2 font-poppins text-lg">{error}</p>}
+      {error && (
+        <p className="text-red-500 mb-2 font-poppins text-lg">{error}</p>
+      )}
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 font-poppins"
+        className={`${poppins.variable} flex flex-col gap-4 font-poppins`}
       >
         <div className="w-full flex flex-col gap-2">
           <p>Municipality :</p>
@@ -145,7 +147,9 @@ export default function ReportModal({ isOpen, onClose }) {
             onChange={(e) => setMunicipality(e.target.value)}
             className="border rounded px-3 py-2"
           >
-            <option value="" hidden>Select Municipality</option>
+            <option value="" hidden>
+              Select Municipality
+            </option>
             {Object.keys(municipalitiesData).map((muni) => (
               <option key={muni} value={muni}>
                 {muni}
@@ -163,7 +167,9 @@ export default function ReportModal({ isOpen, onClose }) {
             className="border rounded px-3 py-2"
             disabled={!municipality}
           >
-            <option value="" hidden>Select Baranggay</option>
+            <option value="" hidden>
+              Select Baranggay
+            </option>
             {barangayOptions.map((b) => (
               <option key={b} value={b}>
                 {b}
@@ -179,7 +185,9 @@ export default function ReportModal({ isOpen, onClose }) {
             onChange={(e) => setProblem(e.target.value)}
             className="border rounded px-3 py-2"
           >
-            <option value="" hidden>Select Problem Type</option>
+            <option value="" hidden>
+              Select Problem Type
+            </option>
             {problemTypes.map((p) => (
               <option key={p} value={p}>
                 {p}

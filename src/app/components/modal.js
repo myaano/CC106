@@ -2,13 +2,12 @@
 
 import { useEffect } from "react";
 export default function Modal({ isOpen, onClose, children }) {
-
-
   useEffect(() => {
     if (!isOpen) return;
 
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = previousOverflow || "";
+    document.body.style.removeProperty("overflow");
 
     const onKey = (e) => {
       if (e.key === "Escape") onClose();
@@ -24,7 +23,7 @@ export default function Modal({ isOpen, onClose, children }) {
         previouslyFocused.focus();
       }
     };
-  }, [<isOpen></isOpen>]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 

@@ -24,30 +24,30 @@ exports.createReport = async (req, res) => {
   }
 };
 
-exports.updateReportStatus = async (req, res) => {
-  try {
-    const reportId = req.params.id;
-    const { new_status, changed_by } = req.body;
+// exports.updateReportStatus = async (req, res) => {
+//   try {
+//     const reportId = req.params.id;
+//     const { new_status, changed_by } = req.body;
 
-    const { error: updateError } = await supabase
-      .from('reports')
-      .update({ status: new_status })
-      .eq('id', reportId);
-    if (updateError) return res.status(500).json({ error: updateError });
+//     const { error: updateError } = await supabase
+//       .from('reports')
+//       .update({ status: new_status })
+//       .eq('id', reportId);
+//     if (updateError) return res.status(500).json({ error: updateError });
 
-    const { error: logError } = await supabase
-      .from('Status')
-      .insert([{
-        report_id: reportId,
-        changed_by,
-        old_status: '...', // fetch actual old status if needed
-        new_status,
-        change_at: new Date().toISOString()
-      }]);
-    if (logError) return res.status(500).json({ error: logError });
+//     const { error: logError } = await supabase
+//       .from('Status')
+//       .insert([{
+//         report_id: reportId,
+//         changed_by,
+//         old_status: '...', // fetch actual old status if needed
+//         new_status,
+//         change_at: new Date().toISOString()
+//       }]);
+//     if (logError) return res.status(500).json({ error: logError });
 
-    res.json({ message: 'Status updated and logged.' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+//     res.json({ message: 'Status updated and logged.' });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
