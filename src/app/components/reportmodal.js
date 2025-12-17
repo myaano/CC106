@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Modal from "./modal";
-
+import { supabase } from "../../api/client.js";
 
 import { Poppins } from "next/font/google";
 const poppins = Poppins({
@@ -61,6 +61,14 @@ const municipalitiesData = {
 const problemTypes = ["Flooding", "Garbage", "Road Damage", "Power Outage"];
 
 export default function ReportModal({ isOpen, onClose }) {
+
+
+
+
+
+
+
+
   const [municipality, setMunicipality] = useState("");
   const [barangay, setBarangay] = useState("");
   const [problem, setProblem] = useState("");
@@ -105,7 +113,7 @@ export default function ReportModal({ isOpen, onClose }) {
 
     try {
       // Example POST request
-      const res = await fetch("", {
+      const res = await fetch("", { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ municipality, barangay, problem }),
