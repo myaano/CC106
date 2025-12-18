@@ -29,7 +29,7 @@ export default function HomeReport() {
 
   return (
     <div className="p-4 rounded-lg border border-gray-200 shadow-xl">
-      <div className="overflow-y-scroll h-[50vh]" data-lenis-prevent>
+      <div className="overflow-x-scroll lg:overflow-y-scroll h-[50vh]" data-lenis-prevent>
         <Table>
           <TableHeader>
             <TableRow>
