@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Modal from "./modal";
 
+import { toast } from "sonner"
+
 
 import { Poppins } from "next/font/google";
 const poppins = Poppins({
@@ -98,22 +100,25 @@ export default function ReportModal({ isOpen, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Check for missing inputs
-    if (!municipality || !barangay || !problem) {
-      setError("Please fill in all fields.");
-      return;``
-    }
+
+    const formData = {
+      municipality : municipality,
+      barangay : barangay,
+      problem : problem,
+    };
+
 
     try {
       // Example POST request
-      const res = await fetch("", {
+      const res = await fetch("/api/reports", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ municipality, barangay, problem }),
+        body: JSON.stringify(formData),
       });
 
       if (!res.ok) throw new Error("Failed to submit");
 
-      alert("Report submitted!");
+      toast.success("Report submitted successfully!");
       // Reset fields
       setMunicipality("");
       setBarangay("");
