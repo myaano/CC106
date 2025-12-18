@@ -52,10 +52,10 @@ const municipalitiesData = {
     "Zone-6",
     "Zone-7",
   ],
-  "Bulusan": ["Cogon", "Dancalan", "Dapdap", "Lalud", "Mabuhay", "Porog", "Sabang", "San Antionio", "San Bernardo", "San Vicente", "Tinampo"],
-  "Casiguran": ["Boton", "Central", "Colambis", "Lungib", "Ponong", "Rizal", "Santa Cruz", "Somal-ot", "Trece Martirez"],
-  "Castilla": ["Bagalayag", "Bagong Silang", "Bonga", "Buenavista", "Cogon", "Dangcalan", "Libtong", "Macalaya", "Pandan", "Poblacion", "Quirapi", "Saclayan", "Tomalaytay", ""],
-  "Donsol": [""],
+  Bulusan: ["Cogon", "Dancalan", "Dapdap", "Lalud", "Mabuhay", "Porog", "Sabang", "San Antionio", "San Bernardo", "San Vicente", "Tinampo"],
+  Casiguran: ["Boton", "Central", "Colambis", "Lungib", "Ponong", "Rizal", "Santa Cruz", "Somal-ot", "Trece Martirez"],
+  Castilla: ["Bagalayag", "Bagong Silang", "Bonga", "Buenavista", "Cogon", "Dangcalan", "Libtong", "Macalaya", "Pandan", "Poblacion", "Quirapi", "Saclayan", "Tomalaytay", ""],
+  Donsol: ["Dancalan", "Gura", "Gimagaan", "Ogod", "Pangpang", "San Rafael", "Santa Cruz", "Sibago", "Vinisitahan"],
   Gubat: [
     "Ariman", 
     "Bagacay", 
@@ -74,7 +74,12 @@ const municipalitiesData = {
 
 
 
-const problemTypes = ["Flooding", "Garbage", "Road Damage", "Power Outage"];
+const problemTypes = [
+  "Improper Waste Management",
+  "Livestock Littering",
+  "Coral Reef Destruction",
+  "Coastal Landslides",
+];
 
 export default function ReportModal({ isOpen, onClose }) {
   const [municipality, setMunicipality] = useState("");

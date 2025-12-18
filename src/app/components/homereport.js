@@ -29,29 +29,29 @@ export default function HomeReport() {
 
   return (
     <div className="p-4 rounded-lg border border-gray-200 shadow-xl">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Municipality</TableHead>
-            <TableHead>Baranggay</TableHead>
-            <TableHead>Problem</TableHead>
-            <TableHead className="text-right">Status</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {reports && reports.map((r) => (
-            <TableRow key={r.id}>
-              <TableCell className="font-medium">{r.id}</TableCell>
-              <TableCell>{r.municipality}</TableCell>
-              <TableCell>{r.barangay}</TableCell>
-              <TableCell className="text-right">
-                {r.problem}
-              </TableCell>
+      <div className="overflow-y-scroll h-[50vh]" data-lenis-prevent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">ID</TableHead>
+              <TableHead>Municipality</TableHead>
+              <TableHead>Barangay</TableHead>
+              <TableHead className="text-right">Problem</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {reports &&
+              reports.map((r) => (
+                <TableRow key={r.id}>
+                  <TableCell className="font-medium">{r.id}</TableCell>
+                  <TableCell>{r.municipality}</TableCell>
+                  <TableCell>{r.barangay}</TableCell>
+                  <TableCell className="text-right">{r.problem}</TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
