@@ -11,8 +11,6 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
-
 const municipalitiesData = {
   Barcelona: [
     "Bangate",
@@ -52,45 +50,79 @@ const municipalitiesData = {
     "Zone-6",
     "Zone-7",
   ],
-  "Bulusan": ["Cogon", "Dancalan", "Dapdap", "Lalud", "Mabuhay", "Porog", "Sabang", "San Antionio", "San Bernardo", "San Vicente", "Tinampo"],
-  "Casiguran": ["Boton", "Central", "Colambis", "Lungib", "Ponong", "Rizal", "Santa Cruz", "Somal-ot", "Trece Martirez"],
-  "Castilla": ["Bagalayag", "Bagong Silang", "Bonga", "Buenavista", "Cogon", "Dangcalan", "Libtong", "Macalaya", "Pandan", "Poblacion", "Quirapi", "Saclayan", "Tomalaytay", ""],
-  "Donsol": [""]
+  Bulusan: [
+    "Cogon",
+    "Dancalan",
+    "Dapdap",
+    "Lalud",
+    "Mabuhay",
+    "Porog",
+    "Sabang",
+    "San Antionio",
+    "San Bernardo",
+    "San Vicente",
+    "Tinampo",
+  ],
+  Casiguran: [
+    "Boton",
+    "Central",
+    "Colambis",
+    "Lungib",
+    "Ponong",
+    "Rizal",
+    "Santa Cruz",
+    "Somal-ot",
+    "Trece Martirez",
+  ],
+  Castilla: [
+    "Bagalayag",
+    "Bagong Silang",
+    "Bonga",
+    "Buenavista",
+    "Cogon",
+    "Dangcalan",
+    "Libtong",
+    "Macalaya",
+    "Pandan",
+    "Poblacion",
+    "Quirapi",
+    "Saclayan",
+    "Tomalaytay",
+    "",
+  ],
+  Donsol: [
+    "Dancalan",
+    "Gura",
+    "Gimagaan",
+    "Ogod",
+    "Pangpang",
+    "San Rafael",
+    "Santa Cruz",
+    "Sibago",
+    "Vinisitahan",
+  ],
+  Gubat: ["Ariman", "Bagacay", "Balud Del Sur", "Buenavista", "Cogon", "Cota na Daco", "Ogao", "Panganiban", "Rizal", "Tiris"],
+  Juban: ["Binanuahan", "Biriran", "Carohayon", "Catanagan", "Embarcadero", "Sablayan Island", "Tinago", "Tughan"],
+  Magallanes: ["Animbong", "Aguda Norte", "Aguda Sur", "Banacud", "Behia", "Binisitahan Del Norte", "Biton", "Biga", "Caditaan", "Cagbolo", "Cagtalaba", "Cawit Proper", "Ginangra", "Hubo", "Poblacion", "Tagas", "Salvacion"],
+  Matnog: ["Bon-ot (Big)", "Bon-ot (Small)", "Calayuan", "Calintaan", "Caloocan", "Camachiles", "Camcaman", "Coron-Coron", "Culasi", "Genablan Occidental", "Genablan Oriental", "Mambajog", "Manurabi", "Panghuliran", "Poropandan", "Santa Isabel", "Sinalcaman", "Sinang-Atan", "Sua", "Tablac", "Tikling Island"],
 };
 
 const problemTypes = ["Flooding", "Garbage", "Road Damage", "Power Outage"];
 
 export default function ReportModal({ isOpen, onClose }) {
-
-
-
-
-
-
-
-
   const [municipality, setMunicipality] = useState("");
   const [barangay, setBarangay] = useState("");
   const [problem, setProblem] = useState("");
   const [barangayOptions, setBarangayOptions] = useState([]);
   const [error, setError] = useState("");
 
-
-
-
-
-    const handleClose = () => {
-      setMunicipality("");
-      setBarangay("");
-      setProblem("");
-      setError("");
-      onClose();
-    };
-
-
-
-
-
+  const handleClose = () => {
+    setMunicipality("");
+    setBarangay("");
+    setProblem("");
+    setError("");
+    onClose();
+  };
 
   // Update barangay options whenever municipality changes
   useEffect(() => {
@@ -108,12 +140,13 @@ export default function ReportModal({ isOpen, onClose }) {
     // Check for missing inputs
     if (!municipality || !barangay || !problem) {
       setError("Please fill in all fields.");
-      return;``
+      return;
+      ``;
     }
 
     try {
       // Example POST request
-      const res = await fetch("", { 
+      const res = await fetch("", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ municipality, barangay, problem }),
