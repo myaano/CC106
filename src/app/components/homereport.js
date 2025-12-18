@@ -5,53 +5,28 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-];
+} from "@/components/ui/table"
+import { useEffect, useState } from "react";
 
 export default function HomeReport() {
+  const [reports, setReports] = useState([]);
+
+
+  useEffect(() => {
+    async function fetchReports() {
+      try {
+        const response = await fetch('/api/reports');
+        const data = await response.json();
+        console.log('Fetched reports:', data);
+        setReports(data.reports);
+      } catch (error) {
+        console.error('Error fetching reports:', error);
+      }
+    }
+    fetchReports();
+  }, []);
+
+
   return (
     <div className="p-4 rounded-lg border border-gray-200 shadow-xl">
       <Table>
@@ -64,13 +39,13 @@ export default function HomeReport() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell><select name="" id=""> <option value="">wdwdwdwd</option></select></TableCell>
+          {reports && reports.map((r) => (
+            <TableRow key={r.id}>
+              <TableCell className="font-medium">{r.id}</TableCell>
+              <TableCell>{r.municipality}</TableCell>
+              <TableCell>{r.barangay}</TableCell>
               <TableCell className="text-right">
-                {invoice.totalAmount}
+                {r.problem}
               </TableCell>
             </TableRow>
           ))}

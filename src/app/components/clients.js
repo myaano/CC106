@@ -341,7 +341,7 @@ export default function Clients() {
         {/* mobile landing page here */}
         <section className="block md:hidden">
           <div className="h-[100vh]  px-4 py-20 font-poppins  flex flex-col text-[#3C3535]  justify-center items-center">
-            <div className="text-[70px]  sm:text-[90px] h-full w-full bg-amber-500 ">
+            <div className="text-[70px]  sm:text-[90px] h-full w-full">
               <p className="leading-none">Protec-</p>
               <p className="flex justify-end items-end leading-none ">ting</p>
               <p className="text-[#D3001C]">Coastal</p>

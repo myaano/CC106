@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Modal from "./modal";
-import { supabase } from "../../api/client.js";
+
+import { toast } from "sonner"
+
 
 import { Poppins } from "next/font/google";
 const poppins = Poppins({
@@ -50,62 +52,27 @@ const municipalitiesData = {
     "Zone-6",
     "Zone-7",
   ],
-  Bulusan: [
-    "Cogon",
-    "Dancalan",
-    "Dapdap",
-    "Lalud",
-    "Mabuhay",
-    "Porog",
-    "Sabang",
-    "San Antionio",
-    "San Bernardo",
-    "San Vicente",
-    "Tinampo",
-  ],
-  Casiguran: [
-    "Boton",
-    "Central",
-    "Colambis",
-    "Lungib",
-    "Ponong",
-    "Rizal",
-    "Santa Cruz",
-    "Somal-ot",
-    "Trece Martirez",
-  ],
-  Castilla: [
-    "Bagalayag",
-    "Bagong Silang",
-    "Bonga",
-    "Buenavista",
-    "Cogon",
-    "Dangcalan",
-    "Libtong",
-    "Macalaya",
-    "Pandan",
-    "Poblacion",
-    "Quirapi",
-    "Saclayan",
-    "Tomalaytay",
-    "",
-  ],
-  Donsol: [
-    "Dancalan",
-    "Gura",
-    "Gimagaan",
-    "Ogod",
-    "Pangpang",
-    "San Rafael",
-    "Santa Cruz",
-    "Sibago",
-    "Vinisitahan",
-  ],
-  Gubat: ["Ariman", "Bagacay", "Balud Del Sur", "Buenavista", "Cogon", "Cota na Daco", "Ogao", "Panganiban", "Rizal", "Tiris"],
+  "Bulusan": ["Cogon", "Dancalan", "Dapdap", "Lalud", "Mabuhay", "Porog", "Sabang", "San Antionio", "San Bernardo", "San Vicente", "Tinampo"],
+  "Casiguran": ["Boton", "Central", "Colambis", "Lungib", "Ponong", "Rizal", "Santa Cruz", "Somal-ot", "Trece Martirez"],
+  "Castilla": ["Bagalayag", "Bagong Silang", "Bonga", "Buenavista", "Cogon", "Dangcalan", "Libtong", "Macalaya", "Pandan", "Poblacion", "Quirapi", "Saclayan", "Tomalaytay", ""],
+  "Donsol": [""],
+  Gubat: [
+    "Ariman", 
+    "Bagacay", 
+    "Balud Del Sur", 
+    "Buenavista", 
+    "Cogon", 
+    "Cota na Daco", 
+    "Ogao", 
+    "Panganiban", 
+    "Rizal", 
+    "Tiris"],
   Juban: ["Binanuahan", "Biriran", "Carohayon", "Catanagan", "Embarcadero", "Sablayan Island", "Tinago", "Tughan"],
   Magallanes: ["Animbong", "Aguda Norte", "Aguda Sur", "Banacud", "Behia", "Binisitahan Del Norte", "Biton", "Biga", "Caditaan", "Cagbolo", "Cagtalaba", "Cawit Proper", "Ginangra", "Hubo", "Poblacion", "Tagas", "Salvacion"],
   Matnog: ["Bon-ot (Big)", "Bon-ot (Small)", "Calayuan", "Calintaan", "Caloocan", "Camachiles", "Camcaman", "Coron-Coron", "Culasi", "Genablan Occidental", "Genablan Oriental", "Mambajog", "Manurabi", "Panghuliran", "Poropandan", "Santa Isabel", "Sinalcaman", "Sinang-Atan", "Sua", "Tablac", "Tikling Island"],
 };
+
+
 
 const problemTypes = ["Flooding", "Garbage", "Road Damage", "Power Outage"];
 
@@ -138,23 +105,25 @@ export default function ReportModal({ isOpen, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Check for missing inputs
-    if (!municipality || !barangay || !problem) {
-      setError("Please fill in all fields.");
-      return;
-      ``;
-    }
+
+    const formData = {
+      municipality : municipality,
+      barangay : barangay,
+      problem : problem,
+    };
+
 
     try {
       // Example POST request
-      const res = await fetch("", {
+      const res = await fetch("/api/reports", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ municipality, barangay, problem }),
+        body: JSON.stringify(formData),
       });
 
       if (!res.ok) throw new Error("Failed to submit");
 
-      alert("Report submitted!");
+      toast.success("Report submitted successfully!");
       // Reset fields
       setMunicipality("");
       setBarangay("");
