@@ -13,8 +13,6 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
-
 const municipalitiesData = {
   Barcelona: [
     "Bangate",
@@ -85,22 +83,13 @@ export default function ReportModal({ isOpen, onClose }) {
   const [barangayOptions, setBarangayOptions] = useState([]);
   const [error, setError] = useState("");
 
-
-
-
-
-    const handleClose = () => {
-      setMunicipality("");
-      setBarangay("");
-      setProblem("");
-      setError("");
-      onClose();
-    };
-
-
-
-
-
+  const handleClose = () => {
+    setMunicipality("");
+    setBarangay("");
+    setProblem("");
+    setError("");
+    onClose();
+  };
 
   // Update barangay options whenever municipality changes
   useEffect(() => {
