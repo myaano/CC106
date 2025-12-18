@@ -57,8 +57,24 @@ const municipalitiesData = {
   "Bulusan": ["Cogon", "Dancalan", "Dapdap", "Lalud", "Mabuhay", "Porog", "Sabang", "San Antionio", "San Bernardo", "San Vicente", "Tinampo"],
   "Casiguran": ["Boton", "Central", "Colambis", "Lungib", "Ponong", "Rizal", "Santa Cruz", "Somal-ot", "Trece Martirez"],
   "Castilla": ["Bagalayag", "Bagong Silang", "Bonga", "Buenavista", "Cogon", "Dangcalan", "Libtong", "Macalaya", "Pandan", "Poblacion", "Quirapi", "Saclayan", "Tomalaytay", ""],
-  "Donsol": [""]
+  "Donsol": [""],
+  Gubat: [
+    "Ariman", 
+    "Bagacay", 
+    "Balud Del Sur", 
+    "Buenavista", 
+    "Cogon", 
+    "Cota na Daco", 
+    "Ogao", 
+    "Panganiban", 
+    "Rizal", 
+    "Tiris"],
+  Juban: ["Binanuahan", "Biriran", "Carohayon", "Catanagan", "Embarcadero", "Sablayan Island", "Tinago", "Tughan"],
+  Magallanes: ["Animbong", "Aguda Norte", "Aguda Sur", "Banacud", "Behia", "Binisitahan Del Norte", "Biton", "Biga", "Caditaan", "Cagbolo", "Cagtalaba", "Cawit Proper", "Ginangra", "Hubo", "Poblacion", "Tagas", "Salvacion"],
+  Matnog: ["Bon-ot (Big)", "Bon-ot (Small)", "Calayuan", "Calintaan", "Caloocan", "Camachiles", "Camcaman", "Coron-Coron", "Culasi", "Genablan Occidental", "Genablan Oriental", "Mambajog", "Manurabi", "Panghuliran", "Poropandan", "Santa Isabel", "Sinalcaman", "Sinang-Atan", "Sua", "Tablac", "Tikling Island"],
 };
+
+
 
 const problemTypes = ["Flooding", "Garbage", "Road Damage", "Power Outage"];
 
