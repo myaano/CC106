@@ -340,8 +340,8 @@ export default function Clients() {
 
         {/* mobile landing page here */}
         <section className="block md:hidden">
-          <div className="h-[100vh]  px-4 py-20 font-poppins  flex flex-col text-[#3C3535]  justify-center items-center">
-            <div className="text-[70px]  sm:text-[90px] h-full w-full">
+          <div className="@container h-[100vh]  px-4 py-20 font-poppins  flex flex-col text-[#3C3535] bg-amber-900 ">
+            <div className="text-[70px] @[390px]:text-[100px] sm:text-[100px] h-[70vh] w-full bg-amber-500 leading-none">
               <p className="leading-none">Protec-</p>
               <p className="flex justify-end items-end leading-none ">ting</p>
               <p className="text-[#D3001C]">Coastal</p>
@@ -350,7 +350,7 @@ export default function Clients() {
               </p>
               <p className="flex justify-end items-end leading-none">sogon</p>
             </div>
-            <div className=" flex justify-start items-center w-full h-full font-medium text-xl">
+            <div className=" flex justify-start items-start h-[20vh] w-full font-medium text-2xl bg-green-500">
               <div className="flex gap-2">
                 <div className="w-[5px] bg-[#0F1E59]"></div>
                 <p className="leading-6">
