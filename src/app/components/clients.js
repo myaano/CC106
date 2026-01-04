@@ -1,22 +1,23 @@
 "use client";
 
-import HomeReport from "./homereport";
-
 // image imports
 import awd from "../../../public/awdawdawd.jpg";
 import wd from "../../../public/wd.jpg";
 import wdw from "../../../public/wdw.jpg";
+import img1 from "../../../public/IMG_3711.jpg";
+import img2 from "../../../public/IMG_1595.jpg";
 // image imports
 
 // component imports
 import { ReactLenis } from "lenis/react";
 import ReportModal from "./reportmodal";
+import HomeReport from "./homereport";
 
 //motion improts
 import { motion } from "motion/react";
 //motion improts
 
-//imports {
+//imports for gsap
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -75,7 +76,9 @@ export default function Clients() {
       stagger: 0.2,
       ease: "bounce.out",
       duration: 0.5,
-      onComplete: () => { landdesc1.revert(); }
+      onComplete: () => {
+        landdesc1.revert();
+      },
     });
 
     const landdesc2 = new SplitText(".landdesc2", { type: "lines" });
@@ -86,7 +89,9 @@ export default function Clients() {
       stagger: 0.2,
       ease: "bounce.out",
       duration: 1,
-      onComplete: () => { landdesc2.revert(); }
+      onComplete: () => {
+        landdesc2.revert();
+      },
     });
 
     // horizontal gsap
@@ -128,7 +133,9 @@ export default function Clients() {
         trigger: ".about",
         start: "bottom top",
       },
-      onComplete: () => { report.revert(); }
+      onComplete: () => {
+        report.revert();
+      },
     });
 
     gsap.from(".a", {
@@ -159,9 +166,9 @@ export default function Clients() {
         trigger: ".about2",
         start: "top center",
       },
-      onComplete: () => { submitrep.revert(); 
-        
-      }
+      onComplete: () => {
+        submitrep.revert();
+      },
     });
 
     const submitrep2 = new SplitText(".submitrep2", { type: "words" });
@@ -176,7 +183,9 @@ export default function Clients() {
         trigger: ".about2",
         start: "top center",
       },
-      onComplete: () => { submitrep2.revert(); }
+      onComplete: () => {
+        submitrep2.revert();
+      },
     });
 
     const ddesc = new SplitText(".ddesc", { type: "words" });
@@ -191,7 +200,9 @@ export default function Clients() {
         trigger: ".about2",
         start: "top center",
       },
-      onComplete: () => { ddesc.revert(); }
+      onComplete: () => {
+        ddesc.revert();
+      },
     });
 
     gsap.from(".bttn", {
@@ -214,11 +225,24 @@ export default function Clients() {
         trigger: ".about2",
         start: "top center",
       },
-      onComplete: () => { quote.revert(); }
+      onComplete: () => {
+        quote.revert();
+      },
     });
-
   });
-  
+
+
+
+  const photos = [awd, img1, img2];
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    setInterval(() => {
+      setIndex((prev) => (prev + 1) % photos.length);
+    }, 3000); 
+
+
+  }, [])
+
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -228,19 +252,21 @@ export default function Clients() {
       smoothWheel={true}
       ref={lenisRef}
     >
-      <div className={`${poppins.variable} ${urbanist.variable} antialiased`}>
+      <div
+        className={`${poppins.variable} ${urbanist.variable} antialiased overflow-hidden`}
+      >
         {/* landing page herer */}
-        <div className="hidden md:block select-none">
-          <div className="h-screen bg-white flex px-[4rem]  text-[#3C3535]">
-            <div className="w-[45vw]  flex flex-col">
-              <div className=" text-5xl lg:text-[100px] font-poppins flex-1 flex flex-col justify-center items-center ">
-                <div>
-                  <p className="landtitle ">Protecting</p>
-                  <p className="landtitle2">Coastal</p>
-                  <p className="landtitle3">Sorsogon</p>
+
+        <div className=" h-[110vh] w-auto  relative lg:flex lg:justify-end ">
+          <div className=" h-[85vh] w-full lg:h-[95vh] flex-1 pt-[50px] pb-[40px] absolute z-10 lg:static ">
+            <div className="w-fit h-full  font-poppins flex flex-col justify-between pl-[20px] md:pl-[35px] lg:pl-[40px]">
+              <div className=" w-fit leading-none text-[64px] xl:text-[90px]">
+                <div className="w-fit text-white lg:text-[#3C3535]">
+                  <p>Protecting</p> <p className="block lg:hidden">Coastal</p>
                 </div>
+                <p className="text-white lg:text-[#3C3535]">Sorsogon</p>
               </div>
-              <div className=" flex flex-col items-end h-[30vh]">
+              <div className=" flex flex-col text-white lg:text-[#3C3535]">
                 <div className="flex flex-col gap-4 font-urbanist font-medium text-lg">
                   <div className="  flex gap-3 leading-5">
                     <div className="w-[4px] bg-[#0F1E59]"></div>
@@ -250,7 +276,7 @@ export default function Clients() {
                     </p>
                   </div>
                   <div className="flex gap-3 leading-5">
-                    <div className="w-[4px] bg-[#0F1E59]"></div>
+                    <div className="w-[4px] bg-[#0F1E59] "></div>
                     <p className="landdesc2">
                       While protecting coastal Livelihood, <br />
                       and Tourism around Sorsogon
@@ -259,108 +285,33 @@ export default function Clients() {
                 </div>
               </div>
             </div>
-            <div className="h-screen  flex-1">
-              <div className="flex h-full relative ">
-                <div className="bg-[#0F1E59] h-[50vh] w-[6px]"></div>
-                <div className=" w-[28rem]"></div>
-                <div className="bg-[#0F1E59] h-[75vh] w-[6px]"></div>
-                <div className=" h-full  flex absolute">
-                  <div className=" pr-2 pl-4 flex flex-col justify-start items-end gap-4 py-10">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.4,
-                        scale: {
-                          type: "spring",
-                          visualDuration: 0.4,
-                          bounce: 0.5,
-                        },
-                      }}
-                      className=" h-auto w-[20rem]"
-                    >
-                      <Image
-                        src={awd}
-                        alt="sorimg1"
-                        sizes="100vw"
-                        style={{ objectFit: "cover" }}
-                        priority={true}
-                      />
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.4,
-                        scale: {
-                          type: "spring",
-                          visualDuration: 0.4,
-                          bounce: 0.5,
-                        },
-                      }}
-                      className=" h-auto w-[13rem]"
-                    >
-                      <Image
-                        src={wd}
-                        alt="sorimg2"
-                        sizes="100vw"
-                        style={{ objectFit: "cover" }}
-                        priority={true}
-                      />
-                    </motion.div>
-                  </div>
-                  <div className=" flex justify-center items-center">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.4,
-                        scale: {
-                          type: "spring",
-                          visualDuration: 0.4,
-                          bounce: 0.5,
-                        },
-                      }}
-                      className=" h-auto w-[12rem]"
-                    >
-                      <Image
-                        src={wdw}
-                        alt="sorimg3"
-                        sizes="100vw"
-                        style={{ objectFit: "cover" }}
-                        priority={true}
-                      />
-                    </motion.div>
-                  </div>
-                </div>
+          </div>
+          <div className="h-screen w-fit lg:h-[82vh] realtive flex font-poppins">
+            <div className="  h-full w-full lg:w-[59vw] overflow-hidden">
+              <div
+                className="flex transition-transform duration-700 ease-in-out h-full  "
+                style={{ transform: `translateX(-${index * 100}%)` }}
+              >
+                {photos.map((photo, index) => (
+                  <Image
+                    key={index}
+                    src={photo}
+                    alt={`sorimg${index + 1}`}
+                    className="xl:flex-shrink-0"
+                    style={{ objectFit: "cover" }}
+                    priority={true}
+                  />
+                ))}
               </div>
             </div>
+            <p className="absolute leading-none pt-[50px] text-[90px] text-white hidden lg:block">
+              Coastal
+            </p>
           </div>
         </div>
 
-        {/* mobile landing page here */}
-        <section className="block md:hidden">
-          <div className="@container h-[100vh]  px-4 py-20 font-poppins  flex flex-col text-[#3C3535]  ">
-            <div className="text-[70px] @[390px]:text-[100px] sm:text-[100px] h-[70vh] w-full  leading-none">
-              <p className="leading-none">Protec-</p>
-              <p className="flex justify-end items-end leading-none ">ting</p>
-              <p className="text-[#D3001C]">Coastal</p>
-              <p className="flex justify-start items-start leading-none ">
-                Sor-
-              </p>
-              <p className="flex justify-end items-end leading-none">sogon</p>
-            </div>
-            <div className=" flex justify-start items-start h-[20vh] w-full font-medium text-2xl ">
-              <div className="flex gap-2">
-                <div className="w-[5px] bg-[#0F1E59]"></div>
-                <p className="leading-6">
-                  Protecting Sorsogon's <br /> Coast and our livelihood
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* mobile landing page here  END*/}
+
+
 
         {/* horizontal scroll pc */}
         <section className="hidden lg:block">
@@ -395,14 +346,6 @@ export default function Clients() {
         {/* about part 2 pc*/}
         <section className="hidden lg:block ">
           <div className="about2 h-screen px-20 py-13 flex flex-col ">
-            <div className="h-10 text-[10px] font-urbanist text-[#3C3535] ">
-              <div className="marquee flex justify-evenly ">
-                <p>Improper Waste Management</p>
-                <p>Livestock Littering</p>
-                <p>Coral Reef Destruction</p>
-                <p>Coastal Landslides</p>
-              </div>
-            </div>
             <div className="flex justify-between">
               <div className="font-poppins text-[100px] leading-none text-[#3C3535]  relative -z-10">
                 <p className="report overflow-hidden">Report</p>
@@ -466,10 +409,6 @@ export default function Clients() {
         <section className="block lg:hidden">
           <div className="h-screen p-[20px] flex flex-col font-poppins ">
             <div className=" flex-1">
-              <div className=" text-[10px] md:text-[14px]  h-15 grid grid-cols-2">
-                <p>Improper Waste Management</p>
-                <p>Coral Reef Destruction</p>
-              </div>
               <div className="flex  justify-between items-center h-auto">
                 <div className="leading-none text-[64px] md:text-[100px] text-[#3C3535] [text-trim-none] ">
                   <p>Report</p>
@@ -508,10 +447,6 @@ export default function Clients() {
                   </svg>
                 </button>
                 <ReportModal isOpen={isOpen} onClose={() => setOpen(false)} />
-              </div>
-              <div className="grid text-[10px] md:text-[14px] grid-cols-2  ">
-                <p>Livestock Littering</p>
-                <p>Coastal Landslides</p>
               </div>
             </div>
           </div>

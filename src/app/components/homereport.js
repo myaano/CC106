@@ -12,19 +12,19 @@ export default function HomeReport() {
   const [reports, setReports] = useState([]);
 
 
-  useEffect(() => {
-    async function fetchReports() {
-      try {
-        const response = await fetch('/api/reports');
-        const data = await response.json();
-        console.log('Fetched reports:', data);
-        setReports(data.reports);
-      } catch (error) {
-        console.error('Error fetching reports:', error);
-      }
-    }
-    fetchReports();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchReports() {
+  //     try {
+  //       const response = await fetch('/api/reports');
+  //       const data = await response.json();
+  //       console.log('Fetched reports:', data);
+  //       setReports(data.reports);
+  //     } catch (error) {
+  //       console.error('Error fetching reports:', error);
+  //     }
+  //   }
+  //   fetchReports();
+  // }, []);
 
 
   return (
