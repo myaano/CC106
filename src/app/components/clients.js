@@ -2,8 +2,7 @@
 
 // image imports
 import awd from "../../../public/awdawdawd.jpg";
-import wd from "../../../public/wd.jpg";
-import wdw from "../../../public/wdw.jpg";
+
 import img1 from "../../../public/IMG_3711.jpg";
 import img2 from "../../../public/IMG_1595.jpg";
 // image imports
@@ -13,21 +12,18 @@ import { ReactLenis } from "lenis/react";
 import ReportModal from "./reportmodal";
 import HomeReport from "./homereport";
 
-//motion improts
-import { motion } from "motion/react";
-//motion improts
-
 //imports for gsap
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { CustomEase } from "gsap/CustomEase";
 
 // imports
 // component imports
 
 // react imports
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 // react imports
 
 //next imports
@@ -62,37 +58,18 @@ export default function Clients() {
 
     rafId = requestAnimationFrame(loop);
 
-    return () => cancelAnimationFrame(rafId);
+    return () => {
+      cancelAnimationFrame(rafId);
+
+    };
   }, []);
 
+  //for preload timer 0-100
+  const refTimer = useRef(null);
+  const counterValue = useRef({ value: 0 });
+
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger, SplitText);
-
-    const landdesc1 = new SplitText(".landdesc1", { type: "lines" });
-    const landdesc1Txt = landdesc1.lines;
-
-    gsap.from(landdesc1Txt, {
-      yPercent: -200,
-      stagger: 0.2,
-      ease: "bounce.out",
-      duration: 0.5,
-      onComplete: () => {
-        landdesc1.revert();
-      },
-    });
-
-    const landdesc2 = new SplitText(".landdesc2", { type: "lines" });
-    const landdesc2Txt = landdesc2.lines;
-
-    gsap.from(landdesc2Txt, {
-      yPercent: -200,
-      stagger: 0.2,
-      ease: "bounce.out",
-      duration: 1,
-      onComplete: () => {
-        landdesc2.revert();
-      },
-    });
+    gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
     // horizontal gsap
     gsap.to(".content", {
@@ -229,19 +206,73 @@ export default function Clients() {
         quote.revert();
       },
     });
-  });
+  }, []);
 
+  // for preload animations
+  useEffect(() => {
+    //custom ease
+    CustomEase.create("hop", "0.85, 0, 0.15, 1");
+    //custom ease
 
+    //timelines
+    const timerTimeline = gsap.timeline({ delay: "0.5" });
+    const overlayText = gsap.timeline({ delay: "0.75" });
+    //timelines
 
+    timerTimeline.to(counterValue.current, {
+      value: "100",
+      duration: "5",
+      ease: "power2.out",
+      onUpdate: () => {
+        if (refTimer.current) {
+          refTimer.current.textContent = Math.floor(counterValue.current.value);
+        }
+      },
+    }, []);
+
+    overlayText
+      .to(".overlay-text", {
+        y: "0",
+        duration: "0.75",
+        ease: "hop",
+      })
+      .to(".overlay-text", {
+        y: "-2rem",
+        duration: "0.75",
+        ease: "hop",
+        delay: "0.75",
+      })
+      .to(".overlay-text", {
+        y: "-4rem",
+        duration: "0.75",
+        ease: "hop",
+        delay: "0.75",
+      })
+      .to(".overlay-text", {
+        y: "-6rem",
+        duration: "0.75",
+        ease: "hop",
+        delay: "1",
+      })
+      .to(".hero-overlay", {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        duration: "1",
+        ease: "hop",
+        onComplete: () => {},
+      });
+  }, []);
+
+  // photos carousel {
   const photos = [awd, img1, img2];
   const [index, setIndex] = useState(0);
   useEffect(() => {
     setInterval(() => {
       setIndex((prev) => (prev + 1) % photos.length);
-    }, 3000); 
+    }, 3000);
 
-
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
+  // photos carousel }
 
   const [isOpen, setOpen] = useState(false);
 
@@ -255,69 +286,80 @@ export default function Clients() {
       <div
         className={`${poppins.variable} ${urbanist.variable} antialiased overflow-hidden`}
       >
-        {/* landing page herer */}
-
-        <div className=" h-[110vh] w-auto  relative lg:flex lg:justify-end ">
-          <div className=" h-[85vh] w-full lg:h-[95vh] flex-1 pt-[50px] pb-[40px] absolute z-10 lg:static ">
-            <div className="w-fit h-full  font-poppins flex flex-col justify-between pl-[20px] md:pl-[35px] lg:pl-[40px]">
-              <div className=" w-fit leading-none text-[64px] xl:text-[90px]">
-                <div className="w-fit text-white lg:text-[#3C3535]">
-                  <p>Protecting</p> <p className="block lg:hidden">Coastal</p>
-                </div>
-                <p className="text-white lg:text-[#3C3535]">Sorsogon</p>
+        <section className="hero relative overflow-hidden w-screen h-[100svh]">
+          <div className="hero-overlay fixed text-white bg-[#0F1E59] h-full w-full z-20">
+            <div className="overlay-text-container absolute top-[2rem] left-[2rem] h-8 overflow-hidden ">
+              <div className="overlay-text  font-poppins font-[96px]  leading-none flex flex-col translate-y-8 will-change-[translate] ">
+                <p className="h-8 flex items-center">Malusog na Dagat</p>
+                <p className="h-8 flex items-center">Para Sako</p>
+                <p className="h-8 flex items-center">Nan Imo</p>
               </div>
-              <div className=" flex flex-col text-white lg:text-[#3C3535]">
-                <div className="flex flex-col gap-4 font-urbanist font-medium text-lg">
-                  <div className="  flex gap-3 leading-5">
-                    <div className="w-[4px] bg-[#0F1E59]"></div>
-                    <p className="landdesc1">
-                      Ensuring Cleanliness, and Safety <br />
-                      across the Province of Sorsogon
-                    </p>
+            </div>
+            <div className="font-urbanist absolute right-[2rem] bottom-[2rem] font-[6rem] text-[6rem] leading-none">
+              <h1 ref={refTimer}>0</h1>
+            </div>
+          </div>
+          {/* landing here */}
+
+          <div className="h-screen w-auto relative lg:flex lg:static">
+            <div className=" h-full  w-full absolute z-10 pt-15 pb-36 lg:py-0 lg:static lg:pt-[50px] lg:pb-[30px]">
+              <div className=" h-full font-poppins flex flex-col justify-between pl-[20px] md:pl-[35px] lg:pl-[40px] ">
+                <div className=" w-fit leading-none text-[64px] lg:text-[85px]">
+                  <div className="w-fit  text-white lg:text-[#3C3535]">
+                    <p>Protecting</p>
+                    <p className="block lg:hidden">Coastal</p>
                   </div>
-                  <div className="flex gap-3 leading-5">
-                    <div className="w-[4px] bg-[#0F1E59] "></div>
-                    <p className="landdesc2">
-                      While protecting coastal Livelihood, <br />
-                      and Tourism around Sorsogon
-                    </p>
+                  <p className="text-white lg:text-[#3C3535]">Sorsogon</p>
+                </div>
+                <div className=" flex flex-col text-white lg:text-[#3C3535]">
+                  <div className="flex flex-col gap-4 font-urbanist font-medium text-lg">
+                    <div className="  flex gap-3 leading-5">
+                      <div className="w-[4px] bg-[#0F1E59]"></div>
+                      <p className="landdesc1">
+                        Ensuring Cleanliness, and Safety <br />
+                        across the Province of Sorsogon
+                      </p>
+                    </div>
+                    <div className="flex gap-3 leading-5">
+                      <div className="w-[4px] bg-[#0F1E59] "></div>
+                      <p className="landdesc2">
+                        While protecting coastal Livelihood, <br />
+                        and Tourism around Sorsogon
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="h-screen w-fit lg:h-[82vh] realtive flex font-poppins">
-            <div className="  h-full w-full lg:w-[59vw] overflow-hidden">
-              <div
-                className="flex transition-transform duration-700 ease-in-out h-full  "
-                style={{ transform: `translateX(-${index * 100}%)` }}
-              >
-                {photos.map((photo, index) => (
-                  <Image
-                    key={index}
-                    src={photo}
-                    alt={`sorimg${index + 1}`}
-                    className="xl:flex-shrink-0"
-                    style={{ objectFit: "cover" }}
-                    priority={true}
-                  />
-                ))}
+            <div className="h-screen w-fit lg:h-[82vh] realtive flex font-poppins  ">
+              <div className=" h-full  w-full lg:w-[59vw] overflow-hidden">
+                <div
+                  className="flex transition-transform duration-700 ease-in-out h-full lg:h-auto"
+                  style={{ transform: `translateX(-${index * 100}%)` }}
+                >
+                  {photos.map((photo, index) => (
+                    <Image
+                      key={index}
+                      src={photo}
+                      alt={`sorimg${index + 1}`}
+                      className="xl:flex-shrink-0"
+                      style={{ objectFit: "cover" }}
+                      priority={true}
+                    />
+                  ))}
+                </div>
               </div>
+              <p className="absolute leading-none pt-[50px] text-[85px] text-white hidden lg:block">
+                Coastal
+              </p>
             </div>
-            <p className="absolute leading-none pt-[50px] text-[90px] text-white hidden lg:block">
-              Coastal
-            </p>
           </div>
-        </div>
-
-
-
-
+        </section>
         {/* horizontal scroll pc */}
         <section className="hidden lg:block">
           <div
             id="horizontal"
-            className="h-screen w-auto flex font-semibold overflow-hidden  "
+            className="h-screen w-auto flex font-semibold overflow-hidden max-w-[1366px] max-h-[651px]"
           >
             <div className="content  h-screen w-[250vw] shrink-0 flex justify-center items-center border-none  select-none">
               <p className="about text-[#3C3535] text-[200px]">
