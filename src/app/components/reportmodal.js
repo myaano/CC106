@@ -96,11 +96,11 @@ export default function ReportModal({ isOpen, onClose }) {
     onClose();
   };
 
-  // Update barangay options whenever municipality changes
+  
   useEffect(() => {
     if (municipality) {
       setBarangayOptions(municipalitiesData[municipality]);
-      setBarangay(""); // reset barangay when municipality changes
+      setBarangay(""); 
     } else {
       setBarangayOptions([]);
       setBarangay("");
@@ -109,7 +109,7 @@ export default function ReportModal({ isOpen, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check for missing inputs
+  
 
     const formData = {
       municipality : municipality,
@@ -119,7 +119,7 @@ export default function ReportModal({ isOpen, onClose }) {
 
 
     try {
-      // Example POST request
+
       const res = await fetch("/api/reports", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

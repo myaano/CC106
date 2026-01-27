@@ -48,14 +48,32 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-/* html, body {
-  scrollbar-width: none;     
-  -ms-overflow-style: none;   
 
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-html::-webkit-scrollbar, 
+html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  display: none;  
+  display: none;
+}
+
+.hero-overlay {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  will-change: clip-path;
+}
+
+.landing p .word {
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+/* @media (max-width: 1000px) {
+  .hero-overlay {
+    right: 1rem;
+    bottom: 1rem;
+  }
 } */
 
 :root {
